@@ -28,7 +28,7 @@ Four .wav files to simulate four users (variables x1, x2, x3 and x4)
 ## Output
 
 ### Receptor
-You can select to play one user voice or all users
+You can either select to play one user voice or all users voices
 
 ## Graphs
 
