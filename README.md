@@ -11,21 +11,21 @@ cdma.m is the main file
 Four .wav files to simulate four users (variables x1, x2, x3 and x4)
 
 ### Quantization
-**nivel: ** the number of levels for quantization.
-**opcion: ** quantization processes. Available options:
+**nivel**: the number of levels for quantization.
+**opcion**: quantization processes. Available options:
 1 - Uniform
 2 - Mu-Law
 4 - A-Law
 
 ### Multiple Access
-**opt: ** type of code for CDMA access. Available options:
+**opt**: type of code for CDMA access. Available options:
 1 = Orthogonal (Synchronous)
 2 = Random (Asynchronous)
-**gp: ** GP value for correlation matrix
+**gp**: GP value for correlation matrix
 
 ## Output
 
-### RECEPTOR
+### Receptor
 You can select to play one user voice or all users
 
 ## Graphs
