@@ -25,14 +25,21 @@ Four .wav files to simulate four users (variables x1, x2, x3 and x4). The progra
 - 1 = Orthogonal (Synchronous)
 - 2 = Random (Asynchronous)
 
-**gp**: GP value for correlation matrix
+**gp**: GP value for correlation matrix.
+
+### Modulation
+BPSK modulation is performed.
+
+### AWGN Channel
+
+**ebno**: Eb/N0. It is the energy per bit to noise power spectral density ratio. Value between 1 and 10, where 10 is for the least noisy channel.
 
 ## Output
 
 ### Receptor
 You can either select to play one user voice or all users voices. The program will plot the quantized signal, output signal and the BER curve for the selected voice.
 
-**errorpe**: probability error. It gives the average rate of occurrence of decoding errors.
+**errorpe**: probability of error. It gives the average rate of occurrence of decoding errors.
 
 ## Graphs
 

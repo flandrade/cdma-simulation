@@ -192,9 +192,8 @@ bitsm=bits*2-1;
 %Repeat bits and remap according to GP, code and nbits
 y_tx=kron(bitsm,ones(1,Gp)).*repmat(codigos,1,nbits); %BPSK
 
-
 %--------------------------------------------------------------------------
-%---------------------- AWGN  CHANNEL -------------------------------------
+%---------------------- AWGN CHANNEL --------------------------------------
 %--------------------------------------------------------------------------
 
 % Eb/N0 The energy per bit to noise power spectral density ratio
