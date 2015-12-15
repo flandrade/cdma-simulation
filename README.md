@@ -36,7 +36,7 @@ BPSK modulation is performed.
 
 ## Output
 
-### Receptor
+### Receiver
 You can either select to play one user voice or all users voices. The program will plot the quantized signal, output signal and the BER curve for the selected voice.
 
 **errorpe**: probability of error. It gives the average rate of occurrence of decoding errors.
