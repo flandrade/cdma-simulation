@@ -55,6 +55,45 @@
 			<key>Head</key>
 			<dict>
 				<key>ID</key>
+				<integer>8</integer>
+			</dict>
+			<key>ID</key>
+			<integer>28</integer>
+			<key>OrthogonalBarAutomatic</key>
+			<true/>
+			<key>OrthogonalBarPoint</key>
+			<string>{0, 0}</string>
+			<key>OrthogonalBarPosition</key>
+			<real>-1</real>
+			<key>Points</key>
+			<array>
+				<string>{346.5, 32.499996}</string>
+				<string>{367.39996, 32.499996}</string>
+			</array>
+			<key>Style</key>
+			<dict>
+				<key>stroke</key>
+				<dict>
+					<key>HeadArrow</key>
+					<string>FilledArrow</string>
+					<key>LineType</key>
+					<integer>2</integer>
+					<key>TailArrow</key>
+					<string>0</string>
+				</dict>
+			</dict>
+			<key>Tail</key>
+			<dict>
+				<key>ID</key>
+				<integer>4</integer>
+			</dict>
+		</dict>
+		<dict>
+			<key>Class</key>
+			<string>LineGraphic</string>
+			<key>Head</key>
+			<dict>
+				<key>ID</key>
 				<integer>22</integer>
 			</dict>
 			<key>ID</key>
@@ -323,40 +362,6 @@
 			<dict>
 				<key>ID</key>
 				<integer>10</integer>
-			</dict>
-		</dict>
-		<dict>
-			<key>Class</key>
-			<string>LineGraphic</string>
-			<key>Head</key>
-			<dict>
-				<key>ID</key>
-				<integer>8</integer>
-			</dict>
-			<key>ID</key>
-			<integer>13</integer>
-			<key>OrthogonalBarAutomatic</key>
-			<true/>
-			<key>OrthogonalBarPoint</key>
-			<string>{0, 0}</string>
-			<key>OrthogonalBarPosition</key>
-			<real>-1</real>
-			<key>Points</key>
-			<array>
-				<string>{339, 34}</string>
-				<string>{367.40005, 33.476334}</string>
-			</array>
-			<key>Style</key>
-			<dict>
-				<key>stroke</key>
-				<dict>
-					<key>HeadArrow</key>
-					<string>FilledArrow</string>
-					<key>LineType</key>
-					<integer>2</integer>
-					<key>TailArrow</key>
-					<string>0</string>
-				</dict>
 			</dict>
 		</dict>
 		<dict>
@@ -685,7 +690,7 @@
 	<key>MasterSheets</key>
 	<array/>
 	<key>ModificationDate</key>
-	<string>2015-12-15 18:06:36 +0000</string>
+	<string>2015-12-15 18:53:45 +0000</string>
 	<key>Modifier</key>
 	<string>Fernanda Andrade</string>
 	<key>NotesVisible</key>
@@ -766,7 +771,7 @@
 			</dict>
 		</array>
 		<key>Frame</key>
-		<string>{{293, 3}, {694, 773}}</string>
+		<string>{{293, 4}, {694, 773}}</string>
 		<key>ListView</key>
 		<true/>
 		<key>OutlineWidth</key>
