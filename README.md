@@ -18,6 +18,8 @@ Four .wav files to simulate four users (variables x1, x2, x3 and x4). The progra
 - 2 - Mu-Law
 - 4 - A-Law
 
+**errorcuantizacion**: quantization error
+
 ### Multiple Access
 **opt**: type of code for CDMA access. Available options:
 - 1 = Orthogonal (Synchronous)
@@ -29,6 +31,8 @@ Four .wav files to simulate four users (variables x1, x2, x3 and x4). The progra
 
 ### Receptor
 You can either select to play one user voice or all users voices. The program will plot the quantized signal, output signal and the BER curve for the selected voice.
+
+**errorpe**: probability error. It gives the average rate of occurrence of decoding errors.
 
 ## Graphs
 
