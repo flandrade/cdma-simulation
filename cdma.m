@@ -48,17 +48,17 @@ soundsc(x4,fm4);
 pause(3)
 
 
-%------------------------- Quantization ----------------------------------- 
+%------------------------- Quantization -----------------------------------
 
 %Number of levels
 nivel=32;
 
 %TYPE OF QUANTIZATION
-% Choose: 
-%1= Univorm
+% Choose:
+%1= Uniform
 %2= Mu law
 %3= A Law
-opcion=1; 
+opcion=1;
 
 %Quantization
 [y_1, x2_1, errorcuantizacion_1] = cuantizar(x1,opcion,nivel);
@@ -66,7 +66,7 @@ opcion=1;
 [y_3, x2_3, errorcuantizacion_3] = cuantizar(x3,opcion,nivel);
 [y_4, x2_4, errorcuantizacion_4] = cuantizar(x4,opcion,nivel);
 
-%Variables to plot 
+%Variables to plot
 xg=x2_1; y=y_1; errorcuantizacion=errorcuantizacion_1;
 x=x1; fm=fm1;
 
@@ -94,12 +94,12 @@ xlabel('samples')
 title('Input signal quantized')
 
 
-%------------------------- ACCESS CODES ----------------------------------- 
+%------------------------- ACCESS CODES -----------------------------------
 
-%TYPE OF CODE 
+%TYPE OF CODE
 % 1 = Orthogonal (Synchronous)
 % 2 = Random (Asynchronous)
-opt=1; 
+opt=1;
 
 %GP Value
 Gp=16;
@@ -109,9 +109,9 @@ if opt==1
     codigos=codigos(2:numusuarios+1,:);
 else
     codigos=(1/sqrt(Gp))*((round(rand(numusuarios,Gp)))*2-1);
-    
+
     %Correlation matrix
-    R=codigos*codigos';  
+    R=codigos*codigos';
 end
 
 
@@ -146,7 +146,7 @@ for i=1:size(bits,1)
     end
 end
 bitsc_2=tem;
-        
+
 
 %------------  USER 3
 %Transforma
@@ -161,8 +161,8 @@ for i=1:size(bits,1)
     end
 end
 bitsc_3=tem;
-            
-   
+
+
 %------------  USER 4
 %Transform
 x3=x2_4-1;
@@ -188,7 +188,7 @@ nbits=length(bits);
 bitsm=bits*2-1;
 
 %---------------------------- MULTIPLE ACCESS  ----------------------------
-          
+
 %Repeat bits and remap according to GP, code and nbits
 y_tx=kron(bitsm,ones(1,Gp)).*repmat(codigos,1,nbits); %BPSK
 
@@ -199,7 +199,7 @@ y_tx=kron(bitsm,ones(1,Gp)).*repmat(codigos,1,nbits); %BPSK
 
 % Eb/N0 The energy per bit to noise power spectral density ratio
 % Option: 1 to 10 where 10 is the least noisy
-ebno=10; 
+ebno=10;
 
 ebn0=10^(ebno/10);
 sigma=1/sqrt(2*ebn0);
@@ -218,8 +218,8 @@ y3=reshape(y_canal,Gp,nbits);
 y4=codigos*y3;
 
 %------------  DEMODULATION
-bitsmr=sign(y4);            
-bitsr=(bitsmr+1)/2;     
+bitsmr=sign(y4);
+bitsr=(bitsmr+1)/2;
 
 %------------ MESSAGE
 %Division
@@ -263,7 +263,7 @@ for i=1:m
         p=p+1;
     end
 end
-            
+
 
 %---------- Play according to user
 
@@ -282,19 +282,19 @@ switch menusuario
         xr=int_state(bitsr_usuario1);
         xrt=xr+1; xrt=xrt';
         soundsc(xrt,fm1);
-    
+
     case 2
         %------------  USER 2
         xr=int_state(bitsr_usuario2);
         xrt=xr+1; xrt=xrt';
         soundsc(xrt,fm2);
-        
+
     case 3
         %------------  USER 3
         xr=int_state(bitsr_usuario3);
         xrt=xr+1; xrt=xrt';
         soundsc(xrt,fm3);
-        
+
     case 4
         %------------  USER 4
         xr=int_state(bitsr_usuario4);
@@ -303,11 +303,11 @@ switch menusuario
     case 5
         %Suma
         y5=sum(y4);
-        
+
         %Demodulator
-        bitsmr=sign(y5);            
-        bitsr=(bitsmr+1)/2; 
-        
+        bitsmr=sign(y5);
+        bitsr=(bitsmr+1)/2;
+
         p=1;
         for i=1:m
             for j=1:n
@@ -319,7 +319,7 @@ switch menusuario
         xr=int_state(bitsr_usuario);
         xrt=xr+1; xrt=xrt';
         soundsc(xrt,fm1);
-        
+
     otherwise
         disp('Playing user 1')
         xr=int_state(bitsr_usuario1);
@@ -339,7 +339,7 @@ title('Output signal');
 %-------------------------- BER ------------------------------------------
 %--------------------------------------------------------------------------
 
-%BER Plot 
+%BER Plot
 
 
 %------------ CALCULO PE Error in AWGN Channel
@@ -348,7 +348,7 @@ pet=[];
 ebn0db=0:1:10;
 
 for eb=ebn0db
-    
+
     ebn0=10^(eb/10);
     sigma=1/sqrt(2*ebn0);
 
@@ -356,24 +356,24 @@ for eb=ebn0db
     pe=[];
 
     while error<10
-       
+
         y=sum(y_tx);
 
         %AWGN Noise
         ruido=normrnd(0,sigma,1,length(y));
         y_canal=y+ruido;
-       
+
         y3=reshape(y_canal,Gp,nbits);
         y4=codigos*y3;
-        
+
         %------------  Demodulator
         bitsmr=sign(y4);
         bitsr=(bitsmr+1)/2;
-        
+
         %------------ Message
         %Division
         usuario1=bitsr(1,:);
-        
+
         p=1;
         for i=1:m
             for j=1:n
@@ -381,10 +381,10 @@ for eb=ebn0db
                 p=p+1;
             end
         end
-        
+
         if numusuarios>1
             usuario2=bitsr(2,:);
-            
+
             p=1;
             for i=1:m
                 for j=1:n
@@ -392,10 +392,10 @@ for eb=ebn0db
                     p=p+1;
                 end
             end
-            
+
             if numusuarios>2
                 usuario3=bitsr(3,:);
-                
+
                 p=1;
                 for i=1:m
                     for j=1:n
@@ -403,10 +403,10 @@ for eb=ebn0db
                         p=p+1;
                     end
                 end
-                
+
                 if numusuarios>3
                     usuario4=bitsr(4,:);
-                    
+
                     p=1;
                     for i=1:m
                         for j=1:n
@@ -414,18 +414,18 @@ for eb=ebn0db
                             p=p+1;
                         end
                     end
-                    
+
                 end
             end
         end
 
-        
-        % Bit Error Rate (BER) according to user 
-        
+
+        % Bit Error Rate (BER) according to user
+
         size(bitsc_1);
         size(usuario1);
         size(bitsr_usuario1);
-        
+
         switch menusuario
             case 1
                 error=error+sum(xor(bitsc_1,usuario1));
@@ -442,9 +442,9 @@ for eb=ebn0db
             otherwise
                 break
         end
-        
-      
-    
+
+
+
     end
 
     %p=mean(pe);
@@ -461,5 +461,3 @@ if (menusuario==1 || menusuario==2 || menusuario==3 || menusuario==4)
     title('BER Curve')
     grid on;
 end
-
-
