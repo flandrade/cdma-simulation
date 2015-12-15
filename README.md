@@ -3,7 +3,7 @@ This program simulates a basic CDMA communication system using Matlab. It includ
 
 ![Diagram](https://github.com/flandrade/cdma-simulation/blob/master/images/diagram.png)
 
-**cdma.m** is the main file
+**cdma.m** is the main file.
 
 ## Components and options
 
@@ -18,8 +18,6 @@ Four .wav files to simulate four users (variables x1, x2, x3 and x4). The progra
 - 2 - Mu-Law
 - 4 - A-Law
 
-The application will plot the input signal with the number of selected levels and the quantized signal.
-
 ### Multiple Access
 **opt**: type of code for CDMA access. Available options:
 - 1 = Orthogonal (Synchronous)
@@ -30,7 +28,7 @@ The application will plot the input signal with the number of selected levels an
 ## Output
 
 ### Receptor
-You can either select to play one user voice or all users voices. The program will plot the output signal and the BER curve for the selected voice.
+You can either select to play one user voice or all users voices. The program will plot the quantized signal, output signal and the BER curve for the selected voice.
 
 ## Graphs
 
