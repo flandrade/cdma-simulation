@@ -1,17 +1,54 @@
+% Simulation of CDMA communication system
+% https://github.com/flandrade/cdma-simulation
+%
+% Copyright 2014. Fernanda Andrade
+% Universidad de las Fuerzas Armadas - ESPE
+%
+% Last modified 16-Dec-2015
+
 clear all
 clc
 
 %--------------------------------------------------------------------------
+%----------------- COMUNICATION OPTIONS -----------------------------------
+%--------------------------------------------------------------------------
+
+%----------------- Quantization -------------------------------------------
+%Number of levels
+nivel=32;
+
+%TYPE OF QUANTIZATION
+% Choose:
+% 1 = Univorm
+% 2 = Mu-law
+% 3 = A-Law
+opcion=1;
+
+%----------------- Multiple Access ----------------------------------------
+%TYPE OF CODE
+% 1 = Orthogonal (Synchronous)
+% 2 = Random (Asynchronous)
+opt=1;
+
+%GP Value
+Gp=16;
+
+%----------------- AWGN Chanel -------------------------------------------
+% Eb/N0 The energy per bit to noise power spectral density ratio
+% Option: 1 to 10 where 10 is the least noisy
+ebno=5;
+
+
+%%
+%--------------------------------------------------------------------------
 %---------------------- TRANSMITTER ---------------------------------------
 %--------------------------------------------------------------------------
 
-
 %--------------------- LOADING VOICES -------------------------------------
-
 %Number of users
 numusuarios = 4;
 
-%Load voices
+%Loading voices
 [x1,fm1]=audioread('voz1.wav');
 [x2,fm2]=audioread('voz2.wav');
 [x3,fm3]=audioread('voz3.wav');
@@ -19,6 +56,7 @@ numusuarios = 4;
 
 %PLOT
 %Plotting input signals (voices)
+figure(1)
 subplot(2,2,1)
 plot(x1)
 axis([ 0 4500 min(x1) max(x1) ])
@@ -49,16 +87,6 @@ pause(3)
 
 
 %------------------------- Quantization -----------------------------------
-
-%Number of levels
-nivel=32;
-
-%TYPE OF QUANTIZATION
-% Choose:
-%1= Uniform
-%2= Mu law
-%3= A Law
-opcion=1;
 
 %Quantization
 [y_1, x2_1, errorcuantizacion_1] = cuantizar(x1,opcion,nivel);
@@ -92,27 +120,6 @@ axis([ 0 4500 min(xg) max(xg)])
 grid on
 xlabel('samples')
 title('Input signal quantized')
-
-
-%------------------------- ACCESS CODES -----------------------------------
-
-%TYPE OF CODE
-% 1 = Orthogonal (Synchronous)
-% 2 = Random (Asynchronous)
-opt=1;
-
-%GP Value
-Gp=16;
-
-if opt==1
-    codigos=(1/sqrt(Gp))*hadamard(Gp);
-    codigos=codigos(2:numusuarios+1,:);
-else
-    codigos=(1/sqrt(Gp))*((round(rand(numusuarios,Gp)))*2-1);
-
-    %Correlation matrix
-    R=codigos*codigos';
-end
 
 
 %---------------------- REMAP MATRIX TO TRANSMIT --------------------------
@@ -153,7 +160,7 @@ bitsc_2=tem;
 x3=x2_3-1;
 bits=dec_bin(x3,log2(nivel));
 
-%Se pasa matriz a vector
+%Matrix to vector
 tem=[];
 for i=1:size(bits,1)
     for j=1:size(bits,2)
@@ -178,8 +185,8 @@ end
 bitsc_4=tem;
 
 
+%%
 %---------------------------- MODULATION  ---------------------------------
-
 %Matrix
 bits=[bitsc_1; bitsc_2; bitsc_3; bitsc_4];
 nbits=length(bits);
@@ -187,18 +194,30 @@ nbits=length(bits);
 %BPSK matrix
 bitsm=bits*2-1;
 
+
+%%
 %---------------------------- MULTIPLE ACCESS  ----------------------------
+
+%Access codes
+if opt==1
+    codigos=(1/sqrt(Gp))*hadamard(Gp);
+    codigos=codigos(2:numusuarios+1,:);
+else
+    codigos=(1/sqrt(Gp))*((round(rand(numusuarios,Gp)))*2-1);
+
+    %Correlation matrix
+    R=codigos*codigos';
+end
+
 
 %Repeat bits and remap according to GP, code and nbits
 y_tx=kron(bitsm,ones(1,Gp)).*repmat(codigos,1,nbits); %BPSK
 
+
+%%
 %--------------------------------------------------------------------------
 %---------------------- AWGN CHANNEL --------------------------------------
 %--------------------------------------------------------------------------
-
-% Eb/N0 The energy per bit to noise power spectral density ratio
-% Option: 1 to 10 where 10 is the least noisy
-ebno=10;
 
 ebn0=10^(ebno/10);
 sigma=1/sqrt(2*ebn0);
@@ -209,6 +228,8 @@ y=sum(y_tx);
 ruido=normrnd(0,sigma,1,length(y));
 y_canal=y+ruido;
 
+
+%%
 %--------------------------------------------------------------------------
 %---------------------- RECEIVER ------------------------------------------
 %--------------------------------------------------------------------------
@@ -231,7 +252,6 @@ for i=1:m
         p=p+1;
     end
 end
-
 
 usuario2=bitsr(2,:);
 
@@ -271,9 +291,8 @@ disp('2 - User 2')
 disp('3 - User 3')
 disp('4 - User 4')
 disp('5 - All (user voices)')
-prompt = 'Que usuario desea reproducir? ';
+prompt = 'Which user do you want to play? ';
 menusuario = input(prompt);
-
 
 switch menusuario
     case 1
@@ -300,7 +319,7 @@ switch menusuario
         xrt=xr+1; xrt=xrt';
         soundsc(xrt,fm4);
     case 5
-        %Suma
+        %Sum
         y5=sum(y4);
 
         %Demodulator
@@ -326,22 +345,19 @@ switch menusuario
         soundsc(xrt,fm1);
 end
 
-%Senal de salida
+%Output signal
 figure(3)
 plot(xrt)
 axis([ 0 4500 min(xrt) max(xrt) ])
 title('Output signal');
 
 
-
+%%
 %--------------------------------------------------------------------------
 %-------------------------- BER ------------------------------------------
 %--------------------------------------------------------------------------
 
-%BER Plot
-
-
-%------------ PE Error in AWGN Channel
+%------------ Calculating PE Error in AWGN Channel
 
 pet=[];
 ebn0db=0:1:10;
@@ -450,8 +466,10 @@ for eb=ebn0db
     pet=[pet mean(pe)];
 end
 
+% Pe error
 errorpe=mean(pet);
 
+%BER Plot
 if (menusuario==1 || menusuario==2 || menusuario==3 || menusuario==4)
     figure(4)
     semilogy(ebn0db,pet,'o-');
