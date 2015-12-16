@@ -19,7 +19,7 @@ nivel=32;
 
 %TYPE OF QUANTIZATION
 % Choose:
-% 1 = Univorm
+% 1 = Uniform
 % 2 = Mu-law
 % 3 = A-Law
 opcion=1;
