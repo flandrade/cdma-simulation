@@ -11,6 +11,8 @@ This program simulates a basic CDMA communication system using Matlab. It includ
 Four .wav files to simulate four users (variables x1, x2, x3 and x4). The program will plot these input signals.
 
 ### Quantization
+This program will plot the first input signal with the levels for quantization and the quantized signal. 
+
 **nivel**: the number of levels for quantization.
 
 **opcion**: quantization processes. Available options:
@@ -37,7 +39,7 @@ BPSK modulation is performed.
 ## Output
 
 ### Receiver
-You can either select to play one user voice or all users voices. The program will plot the quantized signal, output signal and the BER curve for the selected voice.
+You can either select to play one user voice or all users voices. The program will plot the output signal and the BER curve for the selected voice.
 
 **errorpe**: probability of error. It gives the average rate of occurrence of decoding errors.
 
