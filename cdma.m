@@ -86,7 +86,7 @@ soundsc(x4,fm4);
 pause(3)
 
 
-%------------------------- Quantization -----------------------------------
+%------------------------- QUANTIZATION -----------------------------------
 
 %Quantization
 [y_1, x2_1, errorcuantizacion_1] = cuantizar(x1,opcion,nivel);
