@@ -10,7 +10,7 @@ clear all
 clc
 
 %--------------------------------------------------------------------------
-%----------------- COMUMUNICATION OPTIONS ---------------------------------
+%----------------- COMMUNICATION OPTIONS ----------------------------------
 %--------------------------------------------------------------------------
 
 %----------------- Quantization -------------------------------------------
@@ -87,7 +87,6 @@ pause(3)
 
 
 %------------------------- QUANTIZATION -----------------------------------
-
 %Quantization
 [y_1, x2_1, errorcuantizacion_1] = cuantizar(x1,opcion,nivel);
 [y_2, x2_2, errorcuantizacion_2] = cuantizar(x2,opcion,nivel);
@@ -123,7 +122,6 @@ title('Input signal quantized')
 
 
 %---------------------- REMAP MATRIX TO TRANSMIT --------------------------
-
 %------------  USER 1
 %Transform
 x3=x2_1-1;
@@ -457,8 +455,6 @@ for eb=ebn0db
             otherwise
                 break
         end
-
-
 
     end
 
