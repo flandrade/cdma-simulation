@@ -11,7 +11,7 @@ This program simulates a basic CDMA communication system using Matlab. It includ
 Four .wav files to simulate four users (variables x1, x2, x3 and x4). The program will plot these input signals.
 
 ### Quantization
-This program will plot the first input signal with the levels for quantization and the quantized signal. 
+This program will plot the first input signal with the levels for quantization and the quantized signal.
 
 **nivel**: the number of levels for quantization.
 
@@ -20,7 +20,7 @@ This program will plot the first input signal with the levels for quantization a
 - 2 - Mu-Law
 - 4 - A-Law
 
-**errorcuantizacion**: quantization error
+**errorcuantizacion**: quantization error.
 
 ### Multiple Access
 **opt**: type of code for CDMA access. Available options:
