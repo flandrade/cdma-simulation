@@ -33,14 +33,21 @@ This program plots the first input signal with the levels of quantization and th
 BPSK modulation is performed.
 
 ### AWGN Channel
+This module simulates a AWGN channel where noise is added to the communication.
+
 **ebno**: Eb/N0. It is the energy per bit to noise power spectral density ratio. Value between 1 and 10, where 10 is for the least noisy channel.
 
 ## Output
 
-### Receiver
-You can either select to play one user voice or all users voices. The program plots the output signal and the BER curve for the selected voice.
+## BER Curves  
+This module uses a loop in order to simulate an AWGN channel with several Eb/N0 values (between 1 and 10)m and it plots the BER curve for the selected voice.
+
+Demodulation and the division of users are performed in this loop.
 
 **errorpe**: probability of error. It gives the average rate of occurrence of decoding errors.
+
+### Final message
+You can either select to play one user voice or all users voices. The program plots the output signal.
 
 ## Graphs
 
