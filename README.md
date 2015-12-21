@@ -33,7 +33,6 @@ This program plots the first input signal with the levels of quantization and th
 BPSK modulation is performed.
 
 ### AWGN Channel
-
 **ebno**: Eb/N0. It is the energy per bit to noise power spectral density ratio. Value between 1 and 10, where 10 is for the least noisy channel.
 
 ## Output
