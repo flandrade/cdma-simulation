@@ -462,7 +462,7 @@ for eb=ebn0db
     pet=[pet mean(pe)];
 end
 
-% Pe error
+%Pe error
 errorpe=mean(pet);
 
 %BER Plot
