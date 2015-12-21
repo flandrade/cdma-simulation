@@ -39,7 +39,7 @@ This module simulates a AWGN channel where noise is added to the communication.
 
 ## Output
 
-## BER Curves  
+### BER Curves  
 This module uses a loop in order to simulate an AWGN channel with several Eb/N0 values (between 1 and 10)m and it plots the BER curve for the selected voice.
 
 Demodulation and the division of users are performed in this loop.
